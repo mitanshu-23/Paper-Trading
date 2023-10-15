@@ -1,0 +1,23 @@
+.c2{
+    height: 80px;
+    /* border: 1px solid black; */
+    display: flex;
+}
+.img{
+    margin-left: 170px;
+    width: 90px;
+    height: 90px;
+}
+.nav{
+    display: flex;
+    margin-left: 540px;
+    /* border: 1px solid black; */
+    
+    
+}
+.home{
+    /* color: #0859FE; */
+    margin-top: 28px;
+   margin-right: 40px;
+   font-size: 25px;
+}
