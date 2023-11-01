@@ -41,7 +41,6 @@ export default function Dashboard(props) {
 
   useEffect(()=>{
     getWatchlist();
-
   },[])
   function inwatchlist(ind)
   {
@@ -118,7 +117,6 @@ export default function Dashboard(props) {
 
 {
      props.stockPrice?.map((value, index) => {
-      //console.log("Hello",value.name)
       return(
         
        <div style={{border:"2px solid #dcdcdc",width: "18rem", padding:"2%", borderRadius:"5%", height:"10rem"}}>
@@ -137,7 +135,38 @@ More
         </div>
         ) }
    ) } 
-   </div>}
+   </div>
+   }
+
+   News
+
+   {
+      view === false ?
+      <div>
+      Company News
+   {
+         props.news?.map((value, index) => {
+          console.log(props.news[index])
+        return(
+          <>
+        <div style={{border:"1px solid black", boxShadow:"1px 1px", borderRadius:"10px", marginTop:"10px", padding:"5px", marginBottom:"5px", display:"flex",flexWrap: "wrap", gap: "20px"}}>
+          <div id="text" style={{width:"85%"}}>
+      <h2><p style={{fontFamily: "Roboto, sans-serif"}} >{props.news[index].headline}</p></h2>
+      <h5><p style={{width: "100%", whiteSpace: "nowrap" , overflow: "hidden",textOverflow: "ellipsis"}} >{props.news[index].summary}</p></h5>
+      <h6><a href={props.news[index].url} target="_blank" rel="noopener noreferrer">Read More</a></h6>
+      </div>
+      <img src={props.news[index].image} alt="" style={{float:"right",height:"100px", width:"150px", borderRadius:"50%", marginTop:"1%"}}>{props.news[index].img}</img>
+      </div>
+       </>
+       ) 
+      }
+       
+        ) 
+        }
+        </div>
+        : 
+        "Market News"}
+
   
 
 

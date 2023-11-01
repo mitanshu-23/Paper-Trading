@@ -17,6 +17,8 @@ import Component2 from './Component2';
 function App() {
   const [stockPrice, setStockprice]=useState([{name:"AAPL", price:"Loading...."}]);
   const [stockdata, setStockData]=useState([{open:"Loading...", high:"Loading....", low:"Loading...", close:"Loading...."}]);
+  const [newsdata, setNewsData]=useState([{}]);
+
   useEffect(()=>{
 
     const fetchData = async () => {
@@ -45,8 +47,20 @@ await fetch('http://localhost:5000/stockdataPrice')
  }
   ).catch(error => console.log('Error:', error));
     }
+
+    const fetchNews = async () => {
+      await fetch('http://localhost:5000/getnews')
+      .then(response => response.json())
+      .then(data => {
+        console.log("Suucceess",data); 
+        setNewsData(data);
+        }).catch(error => console.log('Error:', error));
+        };
+
+
     fetchData();
     fetchother();
+    fetchNews();
     const interval = setInterval(fetchData, 60000);
     const interval2 = setInterval(fetchother, 60000);
 
@@ -67,10 +81,11 @@ await fetch('http://localhost:5000/stockdataPrice')
     <Route exact path='/SignUp' element={<SignUp/>} />
     <Route exact path='/Profile' element={<Profile/>} />
     <Route exact path='/SignIn' element={<SignIn/>} />
-    <Route exact path='/' element={<Dashboard stockPrice={stockPrice} stockdata={stockdata} />} />
+    <Route exact path='/' element={<Dashboard stockPrice={stockPrice} stockdata={stockdata} news={newsdata}/>} />
     <Route exact path='/Trades' element={<Trades stockPrice={stockPrice}/>} />
     <Route exact path='/Watchlist' element={<Watchlist stockPrice={stockPrice}/>} />
     <Route exact path='/Profile' element={<Profile />} />
+    <Route exact path='/Check' element={<Check />} />
     <Route exact path='/Profile1' element={<Component2 />} />
     </Routes>
 
